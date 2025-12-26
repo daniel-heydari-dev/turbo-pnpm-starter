@@ -1,9 +1,11 @@
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import type { StorybookConfig } from '@storybook/react-vite';
 import tailwindcss from '@tailwindcss/vite';
 
 const require = createRequire(import.meta.url);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -29,7 +31,13 @@ const config: StorybookConfig = {
     const { mergeConfig } = await import('vite');
     return mergeConfig(config, {
       plugins: [tailwindcss()],
+      resolve: {
+        alias: {
+          '@': resolve(__dirname, '../src'),
+        },
+      },
     });
   },
 };
 export default config;
+

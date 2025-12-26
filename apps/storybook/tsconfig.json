@@ -1,7 +1,11 @@
 {
   "extends": "@repo/tsconfig/react.json",
   "compilerOptions": {
-    "rootDir": "."
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", ".storybook", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]

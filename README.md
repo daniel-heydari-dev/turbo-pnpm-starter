@@ -78,6 +78,26 @@ Storybook: http://localhost:6006
 - `pnpm format`: Format all files with Prettier
 - `pnpm clean`: Remove build outputs and node_modules
 
+---
+
+## Path Aliases
+
+Both the **web** app and **storybook** support path aliases for cleaner imports:
+
+| Alias | Path |
+|-------|------|
+| `@/*` | `./src/*` |
+
+### Usage Example
+
+```tsx
+// Instead of relative imports like this:
+import { Button } from '../../../components/Button';
+
+// Use the @ alias:
+import { Button } from '@/components/Button';
 ```
 
-```
+This is configured in:
+- `tsconfig.json` - TypeScript path mapping
+- `vite.config.ts` / `.storybook/main.ts` - Vite resolve aliases
